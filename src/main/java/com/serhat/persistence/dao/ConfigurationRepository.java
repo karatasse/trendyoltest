@@ -8,5 +8,6 @@ import com.serhat.persistence.entity.Configuration;
 
 public interface ConfigurationRepository extends CrudRepository<Configuration, Long>
 {
-	List<Configuration> findByName(String name);
+	Configuration findByName(String name);
+	List<Configuration> findByApplicationName(String applicationName);
 }

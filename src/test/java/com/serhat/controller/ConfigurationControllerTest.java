@@ -60,9 +60,9 @@ public class ConfigurationControllerTest {
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
             "http://localhost:8080/name/SiteName").accept(MediaType.APPLICATION_JSON);
         MvcResult result = mockMvc.perform(requestBuilder).andExpect(status().isOk()).andReturn();
-        List<ConfigurationDTO> returnValue = jacksonObjectMapper.readValue(result.getResponse().getContentAsString(), List.class);
+        ConfigurationDTO returnValue = jacksonObjectMapper.readValue(result.getResponse().getContentAsString(), ConfigurationDTO.class);
 
-        Assert.assertEquals(1, returnValue.size());
+        Assert.assertEquals("trendyol.com", returnValue.getValue());
     }
     
     @Test

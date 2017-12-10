@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,9 +39,15 @@ public class ConfigurationController {
     }
     
     @GetMapping("/name/{name}")
-    public List<ConfigurationDTO> getConfigurationByName(@Valid @PathVariable String name) throws EntityNotFoundException
+    public ConfigurationDTO getConfigurationByName(@Valid @PathVariable String name) throws EntityNotFoundException
     {
-        return ConfigurationMapper.mapConfigurationDTOList(service.findByName(name));
+        return ConfigurationMapper.mapConfigurationDTO(service.findByName(name));
+    }
+    
+    @GetMapping("/value")
+    public String getConfigurationValue(@Valid @RequestParam(required=true) String applicationName, @RequestParam(required=true) String name) throws EntityNotFoundException
+    {
+   		 return service.findByApplicationName(applicationName, name);
     }
     
     @PostMapping

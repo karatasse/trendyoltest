@@ -1,6 +1,5 @@
 package com.serhat.service;
 
-import java.util.Collection;
 import java.util.List;
 
 import com.serhat.dto.ConfigurationDTO;
@@ -15,7 +14,9 @@ public interface ConfigurationService
 
 	public Configuration create(Configuration conf);
 
-	public Collection<Configuration> findByName(String name);
+	public Configuration findByName(String name);
+
+	public String findByApplicationName(String applicationName, String name);
 
 	public Configuration update(long id, ConfigurationDTO configurationDTO) throws EntityNotFoundException;
 

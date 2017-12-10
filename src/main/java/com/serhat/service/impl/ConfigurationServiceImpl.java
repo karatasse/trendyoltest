@@ -57,7 +57,7 @@ public class ConfigurationServiceImpl implements ConfigurationService
 
 	@Override
 	@Cacheable("configurations")
-	public Collection<Configuration> findByName(String name) 
+	public Configuration findByName(String name) 
 	{
 		return configRepository.findByName(name);
 	}
@@ -75,6 +75,18 @@ public class ConfigurationServiceImpl implements ConfigurationService
        
 		conf = configRepository.save(conf);
         return conf;
+	}
+
+
+	@Override
+	@Cacheable("configurations")
+	public String findByApplicationName(String applicationName, String name) {
+		List<Configuration> confs = configRepository.findByApplicationName(applicationName);
+		return confs.stream()
+					.filter(x -> x.getName().equals(name))
+					.findFirst()
+					.get()
+					.getValue();
 	}
 	
 
