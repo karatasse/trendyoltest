@@ -103,5 +103,7 @@ public class ConfigurationControllerTest {
         Assert.assertEquals("SERVICE-A-test", returnValue.getApplicationName());
     	
     }
+    
+    
 
 }

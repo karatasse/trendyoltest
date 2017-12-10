@@ -3,6 +3,7 @@ package com.serhat.service.impl;
 import java.util.Collection;
 import java.util.List;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Lists;
@@ -26,6 +27,7 @@ public class ConfigurationServiceImpl implements ConfigurationService
 
 
     @Override
+    @Cacheable("configurations")
     public List<Configuration> findAll()
     {
         Iterable<Configuration> configurations = configRepository.findAll();
@@ -34,6 +36,7 @@ public class ConfigurationServiceImpl implements ConfigurationService
 
 
 	@Override
+	@Cacheable("configurations")
 	public Configuration find(long id) throws EntityNotFoundException 
 	{
 		Configuration conf = configRepository.findOne(id);
@@ -53,6 +56,7 @@ public class ConfigurationServiceImpl implements ConfigurationService
 
 
 	@Override
+	@Cacheable("configurations")
 	public Collection<Configuration> findByName(String name) 
 	{
 		return configRepository.findByName(name);
