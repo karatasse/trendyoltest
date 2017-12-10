@@ -21,4 +21,9 @@ public class ConfigurationMapper {
             .collect(Collectors.toList());
     }
 
+	public static Configuration mapConfiguration(ConfigurationDTO configurationDTO) {
+		return new Configuration(configurationDTO.getName(), configurationDTO.getType(), 
+				configurationDTO.getValue(), configurationDTO.getIsActive(), configurationDTO.getApplicationName());
+	}
+
 }

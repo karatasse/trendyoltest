@@ -1,6 +1,9 @@
 package com.serhat.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ConfigurationDTO {
 	private Long id;
     private String name;
@@ -9,9 +12,10 @@ public class ConfigurationDTO {
     private Boolean isActive;
     private String applicationName;
     
+    private ConfigurationDTO(){}
+    
 	public ConfigurationDTO(Long id, String name, String type, String value,
 			Boolean isActive, String applicationName) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.type = type;
@@ -20,6 +24,7 @@ public class ConfigurationDTO {
 		this.applicationName = applicationName;
 	}
 
+	@JsonProperty
 	public Long getId() {
 		return id;
 	}
